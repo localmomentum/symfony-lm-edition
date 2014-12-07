@@ -1,0 +1,58 @@
+{
+    "name": "localmomentum/symfony-lm-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "",
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.5",
+        "nikic/iter": "~1.1",
+        "vlucas/phpdotenv": "~1.0@dev",
+        "symfony/symfony": "~2.6",
+        "doctrine/orm": "~2.5@dev",
+        "doctrine/doctrine-bundle": "~1.3",
+        "twig/extensions": "~1.0",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.6",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "umpirsky/composer-permissions-handler": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*",
+        "phpunit/php-invoker": "~1.1"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+             "rm -f bin/doctrine bin/doctrine.php bin/doctrine-dbal",
+            "Umpirsky\\PermissionsHandler\\ScriptHandler::setPermissions"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "rm -f bin/doctrine bin/doctrine.php bin/doctrine-dbal"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "preferred-install": "source"
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-bin-dir": "bin",
+        "symfony-var-dir": "var",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "relative",
+        "writable-dirs": ["var/cache", "var/logs"]
+    }
+}
